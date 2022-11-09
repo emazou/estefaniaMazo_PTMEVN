@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -6,8 +7,12 @@ const productSchema = new mongoose.Schema({
         min: 1,
     },
     image: {
-        data: Buffer,
-        contentType: String,
+        type: String,
+        validate: function (value) {
+            if (!value.startsWith('http')) {
+                throw new Error('image: The image must start with "http"');
+            };
+        }
     },
     price: {
         type: Number,
@@ -29,8 +34,10 @@ const productSchema = new mongoose.Schema({
         required: true
     }
 });
+
 const Product = mongoose.model(
-    "products",
-    productSchema
+    'products',
+    productSchema,
 );
+
 module.exports = Product;
