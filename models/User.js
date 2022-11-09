@@ -9,6 +9,27 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    email: {
+        type: String,
+        required: true,
+        validate: function (value) {
+            if (!value.endsWith('com')) {
+                throw new Error('INVALID_EMAIL')
+            };
+        }
+    },
+    image: {
+        type: String,
+        validate: function (value) {
+            if (!value.startsWith('http')) {
+                throw new Error('INVALID_URL');
+            };
+        }
+    },
+    role: {
+        type: String,
+        required: true
+    },
     password: {
         type: String,
         required: true,
