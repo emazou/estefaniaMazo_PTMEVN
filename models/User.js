@@ -12,23 +12,27 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
+        unique: true,
         validate: function (value) {
             if (!value.endsWith('com')) {
                 throw new Error('INVALID_EMAIL')
             };
-        }
+        },
     },
     image: {
         type: String,
+        default: 'https://i.ibb.co/80Xjm2w/usuario.png',
+        required: true,
         validate: function (value) {
             if (!value.startsWith('http')) {
                 throw new Error('INVALID_URL');
             };
         }
     },
-    role: {
-        type: String,
-        required: true
+    isAdmin: {
+        type: Boolean,
+        default: false,
+        required: true,
     },
     password: {
         type: String,
@@ -37,10 +41,12 @@ const userSchema = new mongoose.Schema({
     },
     logged: {
         type: Boolean,
+        default: false,
         required: true
     },
     verified: {
         type: Boolean,
+        default: false,
         required: true
     },
     code: {

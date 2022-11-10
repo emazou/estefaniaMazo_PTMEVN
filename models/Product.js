@@ -8,6 +8,7 @@ const productSchema = new mongoose.Schema({
     },
     image: {
         type: String,
+        required: true,
         validate: function (value) {
             if (!value.startsWith('http')) {
                 throw new Error('image: The image must start with "http"');
@@ -21,6 +22,8 @@ const productSchema = new mongoose.Schema({
     },
     rating: {
         type: Number,
+        required: true,
+        default: 0,
         min: 1,
         max: 5,
     },
