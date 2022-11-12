@@ -22,6 +22,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 2rem;
     width: 100%;
     background-color: #1e1e1e0b;
