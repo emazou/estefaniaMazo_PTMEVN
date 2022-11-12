@@ -1,6 +1,6 @@
 const router = require('express').Router();
-
-const { signUp, verifyMail, signOut, signIn } = require('../controllers/userController');
+const passport = require('../config/passport');
+const { signUp, verifyMail, signOut, signIn, verifyToken } = require('../controllers/userController');
 
 router.route('/sign/up')
     .post(signUp)
@@ -14,8 +14,7 @@ router.route('/sign/out')
 router.route('/verify/:code')
     .get(verifyMail)
 
-router.route('/:id')
-    .get()
-    .patch()
+router.route('/token')
+    .get(passport.authenticate('jwt', { session: false }), verifyToken)
 
 module.exports = router
