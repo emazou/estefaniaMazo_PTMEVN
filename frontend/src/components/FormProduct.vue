@@ -1,9 +1,9 @@
 <template>
     <div class='container'>
         <form @submit.prevent='onSubmit' class='form'>
-            <h2 class='form__title'>Add product</h2>
+            <h2 class='form__title'>{{ title }}</h2>
             <label class='form__label'>
-                Name 
+                Name
                 <input type='text' v-model='body.name' placeholder='Name' class='form__input' required />
             </label>
             <label class='form__label'>
@@ -15,10 +15,11 @@
                 <input type='text' v-model='body.image' placeholder='http://image.png' class='form__input' required />
             </label>
             <label class='form__label'>
-                Rating (1-5) &starf; &starf; &starf; &starf; &starf; 
+                Rating (1-5) &starf; &starf; &starf; &starf; &starf;
                 <input type='number' v-model='body.rating' placeholder='1-5' min='1' max='5' class='form__input'
                     required />
             </label>
+            <p class='error'>{{ error }}</p>
             <button type='submit' class='form__button'>Add</button>
         </form>
     </div>
@@ -27,34 +28,82 @@
 <script>
 import axios from 'axios';
 export default {
+    props: ['id'],
     data() {
         return {
+            title: '',
             body: {
                 name: '',
                 price: Number,
                 rating: Number,
                 image: 'http://',
             },
+            error: ''
+        }
+    },
+    async mounted() {
+        if (this.id != 'newproduct') {
+            this.getProduct()
+            this.title = 'Edit product'
+        } else {
+            this.title = 'New Product'
         }
     },
     methods: {
         onSubmit() {
-            axios.post(`${import.meta.env.VITE_API_URL}/products`,
-                {
-                    ...this.body
-                },
-                {
-                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-                }
-            )
+            if (this.id === 'newproduct') {
+                axios.post(`${import.meta.env.VITE_API_URL}/products`,
+                    {
+                        ...this.body
+                    },
+                    {
+                        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                    }
+                )
+                    .then((res) => {
+                        if (res.data.success) {
+                            this.$router.push({ path: '/' })
+                        } else {
+                            this.error = res.data.message
+                        }
+                    })
+                    .catch((error) => {
+                        this.error = 'The image must start with "http"'
+                    })
+            } else {
+                axios.patch(`${import.meta.env.VITE_API_URL}/products/${this.id}`,
+                    {
+                        ...this.body
+                    },
+                    {
+                        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                    }
+                )
+                    .then((res) => {
+                        if (res.data.success) {
+                            this.$router.push({ path: '/' })
+                        } else {
+                            this.error = res.data.message
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+            }
+        },
+        getProduct() {
+            axios.get(`${import.meta.env.VITE_API_URL}/products?id=${this.id}`, {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            })
                 .then((res) => {
                     if (res.data.success) {
+                        this.body = res.data.response[0]
                     }
                 })
                 .catch((error) => {
-                    console.log(error)
+                    this.error = 'The image must start with "http"'
                 })
-        }
+        },
     }
 }
 </script>
@@ -109,7 +158,12 @@ export default {
     border-radius: .3rem;
     cursor: pointer;
 }
-.form__button:hover{
+
+.form__button:hover {
     background-color: #307ace;
+}
+
+.error {
+    color: red;
 }
 </style>
