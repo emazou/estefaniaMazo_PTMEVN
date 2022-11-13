@@ -18,7 +18,7 @@ git clone https://github.com/emazou/estefaniaMazo_ptmevn.git
 PORT= #puerto
 MONGO_URL= #URL de la base de datos en https://www.mongodb.com/cloud/atlas
 CLIENT_URL= #'http://localhost:puertocliente'
-SERVER_URL= #'http://localhost:puertoservidor'
+SERVER_URL= #'http://localhost:puertoservidor' o 'https://pt-mevn-server.herokuapp.com/'
 GOOGLE_USER = #Correo electrónico con el que se crearon las credenciales de google
 ##Credenciales de google https://console.cloud.google.com/
 GOOGLE_ID= 
@@ -38,7 +38,7 @@ npm install
 ```sh
 npm run dev
 ```
-
+[API](https://pt-mevn-server.herokuapp.com/)
 ### Despues de que el servidor este listo es hora de ejecutar el cliente, en la terminal ejecute lo siguiente:
 
 ```sh
