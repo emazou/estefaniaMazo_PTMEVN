@@ -20,7 +20,7 @@
                     required />
             </label>
             <p class='error'>{{ error }}</p>
-            <button type='submit' class='form__button'>Add</button>
+            <button type='submit' class='form__button'>Send</button>
         </form>
     </div>
 </template >
