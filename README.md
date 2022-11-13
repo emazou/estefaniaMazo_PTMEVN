@@ -64,6 +64,7 @@ npm run dev
 
 El usuario podrá registrarse, verificar su cuenta e iniciar sesión con sus credenciales, podrá gestionar sus productos con funcionalidades como eliminar, editar y crear, cada acción requerirá autenticación.
 
+[Visitar](https://estefania-mazo-ptmevn.vercel.app/)
 #### Puede utilizar las siguientes credenciales de prueba:
 
 ```sh
