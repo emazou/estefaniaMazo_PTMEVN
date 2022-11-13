@@ -7,6 +7,9 @@
   font-weight: normal;
   font-family: sans-serif;
 }
+input{
+  outline-color:  #248aff9e;
+}
 
 @media (hover: hover) {
   a:hover {
