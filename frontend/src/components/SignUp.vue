@@ -1,5 +1,5 @@
 <template>
-    <div class='container'>
+    <div class='container__sign'>
         <form @submit.prevent='onSubmit' class='form'>
             <h2 class='form__title'>Register</h2>
             <label class='form__label'>
@@ -24,7 +24,8 @@
                 <input type='password' v-model='body.password' class='form__input' placeholder='Min. 6 characters'
                     min='6' required />
             </label>
-            <button type='submit' class='form__button'>LOGIN</button>
+            <p>* Remember to verify your email address</p>
+            <button type='submit' class='form__button'>REGISTER</button>
         </form>
     </div>
 </template >
@@ -40,20 +41,20 @@ export default {
                 lastName: '',
                 email: '',
                 password: '',
-                image: 'https://i.ibb.co/80Xjm2w/usuario.png',
+                image: 'https://i.ibb.co/r4FHFbq/superheroe.png',
             },
             check: '',
         }
     },
     methods: {
         ...mapActions({
-            setUser: 'setUser',
+            setRegister: 'setRegister',
         }),
         onSubmit() {
             axios.post(`${import.meta.env.VITE_API_URL}/auth/sign/up`, { ...this.body })
                 .then((res) => {
                     if (res.data.success) {
-                        this.$router.push({ path: '/' })
+                        this.setRegister(false)
                     }
                 })
                 .catch((error) => {
@@ -65,7 +66,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.container__sign {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -110,5 +111,8 @@ export default {
     border: none;
     border-radius: .3rem;
     cursor: pointer;
+}
+.form__button:hover{
+    background-color: #307ace;
 }
 </style>
