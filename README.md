@@ -47,7 +47,7 @@ cd frontend
 ### Configure las variables de entorno del cliente .env, tal cual como se ve en el .env.example:
 
 ```sh
-VITE_API_URL = #'http://localhost:puertoservidor'
+VITE_API_URL = #'http://localhost:puertoservidor' o 'https://pt-mevn-server.herokuapp.com/'
 ```
 
 ### Una vez haya configurado las variables de entorno del cliente:
