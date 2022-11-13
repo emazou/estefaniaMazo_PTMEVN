@@ -11,7 +11,7 @@ const productSchema = new mongoose.Schema({
         required: true,
         validate: function (value) {
             if (!value.startsWith('http')) {
-                throw new Error('image: The image must start with "http"');
+                throw new Error('The image must start with "http"');
             };
         }
     },
@@ -26,10 +26,6 @@ const productSchema = new mongoose.Schema({
         default: 0,
         min: 1,
         max: 5,
-    },
-    date: {
-        type: Date,
-        required: true,
     },
     user: {
         type: mongoose.Types.ObjectId,
