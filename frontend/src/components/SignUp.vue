@@ -22,7 +22,7 @@
             <label class='form__label'>
                 Password
                 <input type='password' v-model='body.password' class='form__input' placeholder='Min. 6 characters'
-                    min='6' required />
+                    min='6' minlength='6' required />
             </label>
             <p>* Remember to verify your email address</p>
             <button type='submit' class='form__button'>REGISTER</button>
