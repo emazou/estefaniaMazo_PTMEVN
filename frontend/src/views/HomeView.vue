@@ -1,11 +1,12 @@
 <template>
-    <HeaderBar />
-    <div class='container'>
+    <HeaderBar :newProduct='false' />
+    <div class='container__home'>
         <input type='text' v-model='search' placeholder='Search' v-on:keyup='getProducts()' class='container__input' />
         <div class='container__products'>
             <ProductCard :getProducts='getProducts' v-for='product in products' :key='product._id' :id='product._id'
                 :name='product.name' :price='product.price' :rating='product.rating' :date='product.date'
                 :image='product.image' />
+            <p v-show='products.length === 0'>No results</p>
         </div>
     </div>
 </template>
@@ -49,7 +50,7 @@ export default {
 }
 </script>
 <style scoped>
-.container {
+.container__home {
     display: flex;
     flex-direction: column;
     align-items: center;

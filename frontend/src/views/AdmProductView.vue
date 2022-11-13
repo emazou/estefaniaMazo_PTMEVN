@@ -1,14 +1,14 @@
 <template>
     <HeaderBar :newProduct='true' />
     <div class='container'>
-        <FormProduct />
+        <FormProduct :id='id' />
     </div>
 </template>
 <script>
 import FormProduct from '../components/FormProduct.vue';
 import HeaderBar from '../components/HeaderBar.vue';
 export default {
-    props: ["id"],
+    props: ['id'],
     data() {
     },
     components: { 
@@ -17,7 +17,7 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
 .container {
     display: flex;
     flex-direction: column;
