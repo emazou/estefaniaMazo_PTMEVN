@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 
 const userController = {
     signUp: async (req, res) => {
-        const { name, lastName, email, password } = req.body;
+        const { name, lastName, email, password, image } = req.body;
         try {
             const user = await User.findOne({ email });
             if (!user) {
@@ -18,6 +18,7 @@ const userController = {
                         lastName,
                         password: hashPassword,
                         email,
+                        image,
                         code
                     }).save();
                     sendMail(email, code);
@@ -140,6 +141,24 @@ const userController = {
             res.status(400).json({
                 message: "Could't verify account",
                 success: false,
+            });
+        }
+    },
+    verifyToken: (req, res) => {
+        if (!req.err) {
+            const token = jwt.sign({ id: req.user.id }, process.env.KEY_JWT, { expiresIn: 60 * 60 * 24 });
+            res.status(200).json({
+                success: true,
+                response: {
+                    user: req.user,
+                    token: token,
+                },
+                message: "Welcome " + req.user.name,
+            });
+        } else {
+            res.json({
+                success: false,
+                message: "Sign in please!",
             });
         }
     },

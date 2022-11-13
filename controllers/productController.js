@@ -10,8 +10,12 @@ const productController = {
             const queryString = new RegExp(`^${req.query.name}`);
             query.name = { $regex: queryString, $options: 'ix' };
         };
+        if (req.query.id) {
+            query._id = req.query.id
+        };
         try {
-            const products = await Product.find(query);
+            const products = await Product.find(query)
+                .populate('user', { name: 1, lastName: 1, image: 1 })
             if (products) {
                 res.status(200).json({
                     message: 'You get products',
@@ -32,10 +36,10 @@ const productController = {
         };
     },
     createProduct: async (req, res) => {
-        const { name, image, price, date, rating } = req.body;
+        const { name, image, price, rating } = req.body;
         const user = req.user.id;
         try {
-            await new Product({ name, image, price, date, rating, user }).save();
+            await new Product({ name, image, price, rating, user }).save();
             res.status(201).json({
                 message: 'Created product',
                 success: true,
