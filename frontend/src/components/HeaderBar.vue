@@ -1,9 +1,8 @@
 <template>
     <div class='header'>
-        <img src='../assets/logo.svg' class='header__logo' />
-        <button v-show='!newProduct' v-on:click='admProduct()' class='header__button-new'>+ NEW</button>
-        <button v-show='newProduct' v-on:click='admProduct()' class='header__button-new'>PRODUCTS</button>
+        <RouterLink to='/' class='header__link'><img src='../assets/logo.svg' class='header__logo' /></RouterLink>
         <div class='header__items'>
+            <button v-on:click='admProduct()' class='header__button-new'>{{ buttonTitle }}</button>
             <p class='name'>{{ user.name }} {{ user.lastName }}</p>
             <button class='button-user' v-on:click='showMenu = !showMenu'>
                 <img :src='user.image' class='button-user_img' />
@@ -18,21 +17,30 @@
 </template>
 <script>
 import axios from 'axios';
+import { RouterLink } from 'vue-router';
 import { mapGetters, mapActions } from 'vuex';
 import { Icon } from '@iconify/vue';
 export default {
     components: {
         Icon
     },
-    props:{
-        newProduct:{
+    props: {
+        newProduct: {
             type: Boolean,
             default: false
         },
     },
     data() {
         return {
-            showMenu: false
+            showMenu: false,
+            buttonTitle: ''
+        }
+    },
+    mounted() {
+        if (this.newProduct) {
+            this.buttonTitle = 'SEE PRODUCTS'
+        } else {
+            this.buttonTitle = '+ NEW PRODUCT'
         }
     },
     computed: {
@@ -59,16 +67,16 @@ export default {
                 })
         },
         admProduct() {
-            if(this.newProduct){
+            if (this.newProduct) {
                 this.$router.push({ path: '/' })
-            }else{
+            } else {
                 this.$router.push({ name: 'admproduct', params: { id: 'newproduct' } })
             }
         }
     }
 }
 </script>
-<style>
+<style scoped>
 .header {
     display: flex;
     justify-content: space-between;
@@ -82,16 +90,20 @@ export default {
 .header__logo {
     width: 6vh;
 }
-
+.header__link:hover{
+    background: none;
+}
 .header__items {
     display: flex;
     position: relative;
     align-items: center;
     gap: 1rem;
 }
-.name{
+
+.name {
     display: none;
 }
+
 .header__button-new {
     cursor: pointer;
     padding: .5rem 1rem;
@@ -147,8 +159,13 @@ export default {
 .menu__button:hover {
     background-color: #dde3e8;
 }
-@media screen and (min-width:768px){
-    .name{
+
+@media screen and (min-width:768px) {
+    .header {
+        padding: 0 3rem;
+    }
+
+    .name {
         display: block;
     }
 }
