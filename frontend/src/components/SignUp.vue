@@ -25,6 +25,7 @@
                     min='6' minlength='6' required />
             </label>
             <p>* Remember to verify your email address</p>
+            <p class='error'>{{ error }}</p>
             <button type='submit' class='form__button'>REGISTER</button>
         </form>
     </div>
@@ -44,6 +45,7 @@ export default {
                 image: 'https://i.ibb.co/r4FHFbq/superheroe.png',
             },
             check: '',
+            error: ''
         }
     },
     methods: {
@@ -55,10 +57,12 @@ export default {
                 .then((res) => {
                     if (res.data.success) {
                         this.setRegister(false)
+                    } else {
+                        this.error = res.data.message
                     }
                 })
                 .catch((error) => {
-                    console.log(error)
+                    this.error = error.response.data.message
                 })
         }
     }
@@ -112,7 +116,11 @@ export default {
     border-radius: .3rem;
     cursor: pointer;
 }
-.form__button:hover{
+
+.form__button:hover {
     background-color: #307ace;
+}
+.error {
+    color: red;
 }
 </style>
