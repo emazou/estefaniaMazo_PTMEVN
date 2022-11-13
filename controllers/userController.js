@@ -34,7 +34,7 @@ const userController = {
                 };
             } else {
                 res.status(200).json({
-                    message: 'User already exist',
+                    message: 'User already exists',
                     success: false,
                 });
             };
