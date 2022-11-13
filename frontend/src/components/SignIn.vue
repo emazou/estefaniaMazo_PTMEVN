@@ -1,5 +1,5 @@
 <template>
-    <div class='container'>
+    <div class='container__sign'>
         <form @submit.prevent='onSubmit' class='form'>
             <h2 class='form__title'>Enter your credentials</h2>
             <label class='form__label'>
@@ -15,6 +15,7 @@
                     required />
                 Keep me signed in
             </label>
+            <p class='error'>{{ error }}</p>
             <button type='submit' class='form__button'>LOGIN</button>
         </form>
     </div>
@@ -29,7 +30,8 @@ export default {
         return {
             email: '',
             password: '',
-            check: ''
+            check: '',
+            error: ''
         }
     },
     methods: {
@@ -43,10 +45,12 @@ export default {
                         localStorage.setItem('token', res.data.response.token);
                         this.setUser(res.data.response.user);
                         this.$router.push({ path: '/' })
+                    } else {
+                        this.error = res.data.message
                     }
                 })
                 .catch((error) => {
-                    console.log(error)
+                    this.error = error.response.data.message
                 })
         }
     }
@@ -54,7 +58,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.container__sign {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -90,7 +94,10 @@ export default {
     border-radius: .3rem;
     border: 1px solid #E5E5E5;
 }
-
+.form__input--checkbox{
+    width: 1rem;
+    cursor: pointer;
+}
 .form__button {
     background-color: #248AFF;
     color: aliceblue;
@@ -99,5 +106,11 @@ export default {
     border: none;
     border-radius: .3rem;
     cursor: pointer;
+}
+.form__button:hover{
+    background-color: #307ace;
+}
+.error {
+    color: red;
 }
 </style>
