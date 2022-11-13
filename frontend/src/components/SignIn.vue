@@ -11,8 +11,7 @@
                 <input type='password' v-model='password' placeholder='smallTiger21' class='form__input' required />
             </label>
             <label class='form__label form__label--checkbox'>
-                <input type='checkbox' value={true} v-model='check' class='form__input form__input--checkbox'
-                    required />
+                <input type='checkbox' value={true} v-model='check' class='form__input form__input--checkbox' />
                 Keep me signed in
             </label>
             <p class='error'>{{ error }}</p>
