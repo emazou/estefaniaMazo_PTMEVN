@@ -37,7 +37,7 @@ const sendMail = async(mail, code) => {
     const mailOptions = {
         from: GOOGLE_USER,
         to: mail,
-        subject: 'Verified my tinerary account',
+        subject: 'Verified account',
         html: `
             <div>
                 <p>Welcome, verify your account so you can login to the web application.</p>
