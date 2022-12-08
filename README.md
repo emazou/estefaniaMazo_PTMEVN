@@ -38,7 +38,7 @@ npm install
 ```sh
 npm run dev
 ```
-[API](https://pt-mevn-server.herokuapp.com/)
+
 ### Despues de que el servidor este listo es hora de ejecutar el cliente, en la terminal ejecute lo siguiente:
 
 ```sh
@@ -63,14 +63,6 @@ npm run dev
 ## Descripción
 
 El usuario podrá registrarse, verificar su cuenta e iniciar sesión con sus credenciales, podrá gestionar sus productos con funcionalidades como eliminar, editar y crear, cada acción requerirá autenticación.
-
-Ver demo: [App](https://estefania-mazo-ptmevn.vercel.app/)
-#### Puede utilizar las siguientes credenciales de prueba si no desea registrarse:
-
-```sh
-email: usuario@gmail.com
-password: admin1234
-```
 
 
 
