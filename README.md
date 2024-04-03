@@ -1,35 +1,35 @@
-# Prueba técnica MEVN
+# MEVN Technical Test
 
-## Configuración IDE recomendada
+## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-## Cómo empezar
+## Getting Started
 
-### En primer lugar, debe clonar el repositorio en la carpeta que desee:
+### First, you should clone the repository into the directory of your choice:
 
 ```sh
 git clone https://github.com/emazou/estefaniaMazo_ptmevn.git
 ```
 
-### Configure las variables de entorno del servidor .env, tal cual como se ve en el .env.example:
+### Set up the server's .env environment variables, just as you see in the .env.example:
 
 ```sh
-PORT= #puerto
-MONGO_URL= #URL de la base de datos en https://www.mongodb.com/cloud/atlas
-CLIENT_URL= #'http://localhost:puertocliente'
-SERVER_URL= #'http://localhost:puertoservidor' o 'https://pt-mevn-server.herokuapp.com/'
-GOOGLE_USER = #Correo electrónico con el que se crearon las credenciales de google
-##Credenciales de google https://console.cloud.google.com/
+PORT= #port
+MONGO_URL= #Database URL at https://www.mongodb.com/cloud/atlas
+CLIENT_URL= #'http://localhost:clientport'
+SERVER_URL= #'http://localhost:serverport' or 'https://pt-mevn-server.herokuapp.com/'
+GOOGLE_USER = #Email used to create Google credentials
+##Google credentials https://console.cloud.google.com/
 GOOGLE_ID= 
 GOOGLE_SECRET= 
 ##OAUTH2
 GOOGLE_REFRESH= 
 GOOGLE_URL = ## https://developers.google.com/oauthplayground
-KEY_JWT= #Crea tu propia llave secreta
+KEY_JWT= #Create your own secret key
 ```
 
-### Una vez haya clonado el repositorio en su máquina local y haya configurado las variables de entorno:
+### Once you have cloned the repository on your local machine and set up the environment variables:
 
 ```sh
 npm install
@@ -39,18 +39,18 @@ npm install
 npm run dev
 ```
 
-### Despues de que el servidor este listo es hora de ejecutar el cliente, en la terminal ejecute lo siguiente:
+### After the server is ready, it's time to run the client, in the terminal execute the following:
 
 ```sh
 cd frontend
 ```
-### Configure las variables de entorno del cliente .env, tal cual como se ve en el .env.example:
+### Set up the client's .env environment variables, just as you see in the .env.example:
 
 ```sh
-VITE_API_URL = #'http://localhost:puertoservidor' o 'https://pt-mevn-server.herokuapp.com/'
+VITE_API_URL = #'http://localhost:serverport' or 'https://pt-mevn-server.herokuapp.com/'
 ```
 
-### Una vez haya configurado las variables de entorno del cliente:
+### Once you have set up the client's environment variables:
 
 ```sh
 npm install
@@ -60,9 +60,9 @@ npm install
 npm run dev
 ```
 
-## Descripción
+## Description
 
-El usuario podrá registrarse, verificar su cuenta e iniciar sesión con sus credenciales, podrá gestionar sus productos con funcionalidades como eliminar, editar y crear, cada acción requerirá autenticación.
+Users will be able to register, verify their account, and log in with their credentials. They will be able to manage their products with functionalities such as delete, edit, and create, each action will require authentication.
 
 
 
