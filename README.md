@@ -9,7 +9,7 @@
 ### First, you should clone the repository into the directory of your choice:
 
 ```sh
-git clone https://github.com/emazou/estefaniaMazo_ptmevn.git
+git clone https://github.com/emazou/products-stack.git
 ```
 
 ### Set up the server's .env environment variables, just as you see in the .env.example:
@@ -18,7 +18,7 @@ git clone https://github.com/emazou/estefaniaMazo_ptmevn.git
 PORT= #port
 MONGO_URL= #Database URL at https://www.mongodb.com/cloud/atlas
 CLIENT_URL= #'http://localhost:clientport'
-SERVER_URL= #'http://localhost:serverport' or 'https://pt-mevn-server.herokuapp.com/'
+SERVER_URL= #'http://localhost:serverport'
 GOOGLE_USER = #Email used to create Google credentials
 ##Google credentials https://console.cloud.google.com/
 GOOGLE_ID= 
